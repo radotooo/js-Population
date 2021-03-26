@@ -21,7 +21,6 @@ export default class StarWarsUniverse extends EventEmitter {
   }
 
   _onPersonBorn(data) {
-    console.log(data);
     const films = this.films.map((x) => x.url);
 
     for (const url in data.filmUrls) {
@@ -30,15 +29,12 @@ export default class StarWarsUniverse extends EventEmitter {
       if (!films.includes(movieUrl)) {
         this.films.push(new Film(movieUrl));
         this.emit(StarWarsUniverse.events.FILM_ADDED);
-        console.log(this.films);
       }
     }
   }
 
   _onPopulationCompleted() {
     this.emit(StarWarsUniverse.events.UNIVERSE_POPULATED);
-    console.log(this.planet.populationCount + 'populated');
-    console.log(this.films.length + 'populated');
   }
 
   async init() {
@@ -53,7 +49,6 @@ export default class StarWarsUniverse extends EventEmitter {
     );
 
     this.planet = planet;
-    console.log(this.planet);
     this.planet.on(Planet.events.PERSON_BORN, (data) =>
       this._onPersonBorn(data)
     );
@@ -62,8 +57,5 @@ export default class StarWarsUniverse extends EventEmitter {
     );
 
     this.planet.populate();
-    console.log(firstTenPeople);
-
-    console.log(zeroPopulationPlanet);
   }
 }

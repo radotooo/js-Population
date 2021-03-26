@@ -36,7 +36,6 @@ export default class Application extends EventEmitter {
 
     await swUniverse.init();
     this.data.universe = swUniverse;
-    // await delay(1).then(() => console.log('gg'));
     this.emit(Application.events.APP_READY);
   }
 }

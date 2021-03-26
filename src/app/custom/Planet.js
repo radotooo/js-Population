@@ -33,7 +33,6 @@ export default class Planet extends EventEmitter {
     }
     await delay(this.config.populationDelay);
     const people = this.peopleData.shift();
-    // console.log(people);
     const person = new Person(people.name, people.height, people.mass);
 
     this.population.push(person);
